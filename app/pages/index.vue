@@ -3,6 +3,7 @@
 </script>
 
 <template>
-  <HelloWorld />
+  <!-- <HelloWorld /> -->
+  <LandingPage />
 </template>
 
