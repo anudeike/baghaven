@@ -8,15 +8,15 @@
     <v-card-text>
         <v-tabs-window v-model="tab">
             <v-tabs-window-item value="one">
-                One
+                <CreateFirstPostCTA />
             </v-tabs-window-item>
 
             <v-tabs-window-item value="two">
-                Two
+                <CreateFirstPostCTA />
             </v-tabs-window-item>
 
             <v-tabs-window-item value="three">
-                Three
+                <CreateFirstPostCTA />
             </v-tabs-window-item>
         </v-tabs-window>
     </v-card-text>
