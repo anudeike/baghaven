@@ -1,7 +1,9 @@
 <template>
-    <v-card>
-        <v-card-title>
-            Create Post
-        </v-card-title>
-    </v-card>
+    <v-container fluid>
+        <v-row>
+            <v-col>
+                YES
+            </v-col>
+        </v-row>
+    </v-container>
 </template>

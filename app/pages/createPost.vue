@@ -3,5 +3,5 @@
 </script>
 
 <template>
-    <CreatePostPage />
+    <PostCreationCreatePostPage />
 </template>
