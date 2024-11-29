@@ -2,9 +2,10 @@
   <v-app>
     <AppHeader />
     <v-main>
-      <slot />
+      <v-container fluid>
+        <slot />
+      </v-container>
     </v-main>
-
     <AppFooter />
   </v-app>
 </template>
