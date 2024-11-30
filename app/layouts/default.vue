@@ -2,7 +2,7 @@
   <v-app>
     <AppHeader />
     <v-main>
-      <v-container fluid>
+      <v-container>
         <slot />
       </v-container>
     </v-main>
