@@ -11,7 +11,7 @@
                 <v-row justify="center">
                     <v-col v-for="(product, index) in products" :key="index" cols="12" sm="6" md="4" lg="3"
                         class="masonry-item">
-                        <v-card>
+                        <v-card variant="flat">
                             <v-img :src="product.imageLink" aspect-ratio="1.5"></v-img>
                             <v-card-title>{{ product.name }}</v-card-title>
                             <v-card-subtitle>${{ product.price }}</v-card-subtitle>
