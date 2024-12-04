@@ -4,7 +4,7 @@
             <v-row class="align-center">
                 <v-col cols="auto">
                     <v-icon icon="$vuetify" class="mx-4"></v-icon>
-                    <v-btn variant="plain" class="mx-2">
+                    <v-btn variant="plain" class="mx-2" to="/">
                         Home
                     </v-btn>
                 </v-col>

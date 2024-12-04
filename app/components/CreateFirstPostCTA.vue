@@ -14,8 +14,7 @@
                         </div>
                     </v-card-subtitle>
                     <v-card-actions class="justify-center">
-                        <v-btn prepend-icon="mdi-image-search" variant="outlined" size="large" block>
-
+                        <v-btn prepend-icon="mdi-image-search" variant="outlined" size="large" block to="/createPost">
                             Image Search
                         </v-btn>
                     </v-card-actions>
