@@ -9,14 +9,8 @@
         <v-tabs-window v-model="tab">
             <v-tabs-window-item value="one">
                 <v-row justify="center">
-                    <v-col v-for="(product, index) in products" :key="index" cols="12" sm="6" md="4" lg="3"
-                        class="masonry-item">
-                        <v-card variant="flat">
-                            <v-img :src="product.imageLink" aspect-ratio="1.5"></v-img>
-                            <v-card-title>{{ product.name }}</v-card-title>
-                            <v-card-subtitle>${{ product.price }}</v-card-subtitle>
-                            <v-card-text>{{ product.description }}</v-card-text>
-                        </v-card>
+                    <v-col v-for="(product, index) in products" :key="index" cols="12" sm="6" md="4" lg="3">
+                        <ProductCard :product="product" />
                     </v-col>
                 </v-row>
             </v-tabs-window-item>
@@ -33,6 +27,7 @@
 </template>
 
 <script>
+import ProductCard from './ProductCard.vue';
 
 export default {
     data: () => ({
@@ -48,17 +43,3 @@ export default {
     }),
 }
 </script>
-
-<style>
-.masonry-item {
-    /* Add some spacing for the masonry effect */
-    margin-bottom: 16px;
-}
-
-@media screen and (min-width: 600px) {
-    .v-col.masonry-item {
-        break-inside: avoid;
-        /* Ensure items don't break across columns */
-    }
-}
-</style>
