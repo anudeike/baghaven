@@ -12,15 +12,16 @@
                                             {{ product.name }}
                                         </div>
 
-                                        <v-chip v-if="product.isOriginal" prepend-icon="mdi-check-circle" color="white">
-                                            original
-                                        </v-chip>
+                                        <v-chip-group>
+                                            <v-chip v-if="product.isOriginal" prepend-icon="mdi-check-circle"
+                                                color="white">
+                                                original
+                                            </v-chip>
 
-
-                                        <v-chip prepend-icon="mdi-currency-usd" color="white">
-                                            {{ product.price }} USD
-                                        </v-chip>
-
+                                            <v-chip prepend-icon="mdi-currency-usd" color="white">
+                                                {{ product.price }} USD
+                                            </v-chip>
+                                        </v-chip-group>
                                     </v-card-title>
                                 </v-col>
                             </v-row>
@@ -33,6 +34,9 @@
                 {{ product.name }}
             </div>
 
+            <div class="text-p ma-2">
+                {{ product.description }}
+            </div>
         </v-card>
     </v-hover>
 </template>
