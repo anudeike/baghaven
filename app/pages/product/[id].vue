@@ -1,16 +1,10 @@
 <template>
-    <ProductPage :product="product" />
+    <ProductPage />
 </template>
 
 <script>
 import ProductPage from '~/components/ProductPage.vue';
 export default {
-    props: {
-        product: {
-            type: Object,
-            required: true,
-        },
-    }
 };
 
 </script>

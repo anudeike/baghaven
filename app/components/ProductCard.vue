@@ -41,20 +41,29 @@
     </v-hover>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+
+import { useProductStore } from '../stores/productStore';
+import type { Product } from '../types/Product';
+import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
+
+export default defineComponent({
     props: {
         product: {
-            type: Object,
+            type: Object as PropType<Product>,
             required: true,
         },
     },
     methods: {
         openProduct() {
+            // store the product in the state
+            const productStore = useProductStore();
+            productStore.setProduct(this.product);
             this.$router.push(`/product/${this.product.productId}`);
         },
     },
-};
+});
 </script>
 
 <style scoped>
