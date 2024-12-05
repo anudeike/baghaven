@@ -39,6 +39,7 @@ export default {
             timeCreated: new Date().toISOString(),
             imageLink: `https://picsum.photos/500/300?image=${Math.floor(Math.random() * 1000)}`, // Random image number
             description: `Description for Product ${index + 1}`,
+            isOriginal: Math.random() < 0.5
         }))
     }),
 }
