@@ -2,35 +2,40 @@
     <v-hover v-slot="{ isHovering, props }" open-delay="50" close-delay="200">
         <v-card variant="flat" color="transparent" v-bind="props" elevation="0">
             <v-img :src="product.imageLink" aspect-ratio="1.5" :class="{ 'on-hover': isHovering }" cover>
+                <v-overlay :model-value="!!isHovering" scrim="#001714" contained opacity="0.5" class="align-sr">
+
+                    <v-row class="ma-2">
+                        <v-col>
+                            <v-row>
+                                <v-col>
+                                    <v-card-title>
+                                        <div>
+                                            {{ product.name }}
+                                        </div>
+
+                                        <v-chip v-if="product.isOriginal" prepend-icon="mdi-check-circle" color="white">
+                                            original
+                                        </v-chip>
+
+
+                                        <v-chip prepend-icon="mdi-currency-usd" color="white">
+                                            {{ product.price }} USD
+                                        </v-chip>
+
+                                    </v-card-title>
+                                </v-col>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+
+                </v-overlay>
             </v-img>
 
-            <v-overlay :model-value="!!isHovering" scrim="#001714" contained opacity="0.5" class="align-sr">
-
-                <v-row class="ma-2">
-                    <v-col>
-                        <v-row>
-                            <v-col>
-                                <v-card-title>
-                                    <div>
-                                        {{ product.name }}
-                                    </div>
-
-                                    <v-chip v-if="product.isOriginal" prepend-icon="mdi-check-circle" color="white">
-                                        original
-                                    </v-chip>
+            <v-card-title>
+                {{ product.name }}
+            </v-card-title>
 
 
-                                    <v-chip prepend-icon="mdi-currency-usd" color="white">
-                                        ${{ product.price }} USD
-                                    </v-chip>
-
-                                </v-card-title>
-                            </v-col>
-                        </v-row>
-                    </v-col>
-                </v-row>
-
-            </v-overlay>
 
             <!-- <v-card-subtitle>${{ product.price }}</v-card-subtitle>
             <v-card-text>{{ product.description }}</v-card-text> -->
