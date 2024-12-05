@@ -3,7 +3,6 @@
         <v-card variant="flat" color="transparent" v-bind="props" elevation="0">
             <v-img :src="product.imageLink" aspect-ratio="1.5" :class="{ 'on-hover': isHovering }" cover>
                 <v-overlay :model-value="!!isHovering" scrim="#001714" contained opacity="0.5" class="align-sr">
-
                     <v-row class="ma-2">
                         <v-col>
                             <v-row>
@@ -27,18 +26,13 @@
                             </v-row>
                         </v-col>
                     </v-row>
-
                 </v-overlay>
             </v-img>
 
-            <v-card-title>
+            <div class="text-h6 ma-2">
                 {{ product.name }}
-            </v-card-title>
+            </div>
 
-
-
-            <!-- <v-card-subtitle>${{ product.price }}</v-card-subtitle>
-            <v-card-text>{{ product.description }}</v-card-text> -->
         </v-card>
     </v-hover>
 </template>
