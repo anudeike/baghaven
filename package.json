@@ -16,8 +16,7 @@
   "dependencies": {
     "@nuxt/eslint": "^0.7.1",
     "nuxt": "^3.14.1592",
-    "vue": "latest",
-    "vuex": "^4.1.0"
+    "vue": "latest"
   },
   "devDependencies": {
     "@mdi/font": "^7.4.47",
