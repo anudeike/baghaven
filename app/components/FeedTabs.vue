@@ -34,6 +34,7 @@ export default {
         tab: null,
         products: Array.from({ length: 50 }, (_, index) => ({
             id: index + 1,
+            productId: `prod-${Math.random().toString(36).substr(2, 9)}-${Date.now()}`,
             name: `Product ${index + 1}`,
             price: (Math.random() * 100).toFixed(2), // Random price between 0 and 100
             timeCreated: new Date().toISOString(),
