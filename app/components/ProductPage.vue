@@ -28,7 +28,10 @@
                     </v-card-subtitle>
 
                     <v-card-actions>
-                        <v-btn>Buy</v-btn>
+                        <div class="text-h6 font-weight-light mb-n1">
+                            <!-- Show the average price of the product listings -->
+                            Average Price: ${{ averagePrice }}
+                        </div>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -51,27 +54,37 @@
 
                         <v-main>
                             <v-container>
-                                <v-row dense>
-                                    <v-col cols="12">
-                                        <v-card color="#1F7087">
-                                            <div class="d-flex flex-no-wrap justify-space-between">
+                                <v-row justify="center">
+                                    <v-col v-for="listing in productsListing" :key="listing.id" cols="12">
+                                        <v-card flat>
+                                            <div class="d-flex flex-no-wrap">
+                                                <v-avatar class="ma-3" rounded="0" size="125">
+                                                    <v-img :src="product?.imageLink"></v-img>
+                                                </v-avatar>
+
                                                 <div>
                                                     <v-card-title class="text-h5">
-                                                        Supermodel
+                                                        {{ listing.name }}
                                                     </v-card-title>
 
-                                                    <v-card-subtitle>Foster the People</v-card-subtitle>
+                                                    <v-card-subtitle>{{ listing.description }}</v-card-subtitle>
 
                                                     <v-card-actions>
-                                                        <v-btn class="ms-2" size="small" text="START RADIO"
-                                                            variant="outlined"></v-btn>
+                                                        <v-chip-group column>
+                                                            <v-chip>
+                                                                ${{ listing.price }}
+                                                            </v-chip>
+                                                            <v-chip color="primary">
+                                                                {{ listing.brand }}
+                                                            </v-chip>
+                                                            <v-chip color="secondary">
+                                                                {{ listing.seller }}
+                                                            </v-chip>
+                                                        </v-chip-group>
                                                     </v-card-actions>
                                                 </div>
 
-                                                <v-avatar class="ma-3" rounded="0" size="125">
-                                                    <v-img
-                                                        src="https://cdn.vuetifyjs.com/images/cards/foster.jpg"></v-img>
-                                                </v-avatar>
+
                                             </div>
                                         </v-card>
                                     </v-col>
@@ -91,11 +104,32 @@ import type { Product } from '../types/Product';
 import { useProductStore } from '~/stores/productStore';
 
 export default {
+    data: () => ({
+        tab: null,
+        sellers: ["BoxLunch", "LoungeFly", "Amazon", "Ebay", "Mercari", "Poshmark", "Shopify"],
+        brands: ["BoxLunch", "LoungeFly", "DanMartins"],
+        productsListing: Array.from({ length: 20 }, (_, index) => ({
+            id: index + 1,
+            productId: `prod-${Math.random().toString(36).substr(2, 9)}-${Date.now()}`,
+            name: `Listing ${index + 1}`,
+            price: (Math.random() * 100).toFixed(2), // Random price between 0 and 100
+            timeCreated: new Date().toISOString(),
+            imageLink: `https://picsum.photos/500/300?image=${Math.floor(Math.random() * 1000)}`, // Random image number
+            description: `Description for Product Listing ${index + 1}`,
+            isOriginal: Math.random() < 0.5,
+            seller: ["BoxLunch", "LoungeFly", "Amazon", "Ebay", "Mercari", "Poshmark", "Shopify"][Math.floor(Math.random() * 7)],
+            brand: ["BoxLunch", "LoungeFly", "DanMartins"][Math.floor(Math.random() * 3)],
+        }))
+    }),
     computed: {
         product(): Product | null {
             const productStore = useProductStore();
             return productStore.selectedProduct;
-        }
+        },
+        averagePrice() {
+            const total = this.productsListing.reduce((sum, product) => sum + parseFloat(product.price), 0);
+            return (total / this.productsListing.length).toFixed(2); // Return average rounded to 2 decimals
+        },
     }
 }
 </script>
