@@ -9,7 +9,7 @@
         <v-tabs-window v-model="tab">
             <v-tabs-window-item value="one">
                 <v-row justify="center">
-                    <v-col v-for="(product, index) in products" :key="index" cols="12" sm="6" md="4" lg="3">
+                    <v-col v-for="(product, index) in products" :key="index" cols="12" sm="6" lg="3">
                         <ProductCard :product="product" />
                     </v-col>
                 </v-row>
@@ -29,9 +29,23 @@
 <script>
 import ProductCard from './ProductCard.vue';
 
+function getRandomItem(arr) {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+}
+
+function getRandomSlice(arr, length) {
+    const randomIndex = Math.floor(Math.random() * (arr.length - length + 1));
+
+    let endIndex = Math.min(randomIndex + length, arr.length);
+    return arr.slice(randomIndex, endIndex);
+}
+
 export default {
     data: () => ({
         tab: null,
+        sellers: ["BoxLunch", "LoungeFly", "Amazon", "Ebay", "Mercari", "Poshmark", "Shopify"],
+        brands: ["BoxLunch", "LoungeFly", "DanMartins"],
         products: Array.from({ length: 50 }, (_, index) => ({
             id: index + 1,
             productId: `prod-${Math.random().toString(36).substr(2, 9)}-${Date.now()}`,
@@ -40,8 +54,10 @@ export default {
             timeCreated: new Date().toISOString(),
             imageLink: `https://picsum.photos/500/300?image=${Math.floor(Math.random() * 1000)}`, // Random image number
             description: `Description for Product ${index + 1}`,
-            isOriginal: Math.random() < 0.5
+            isOriginal: Math.random() < 0.5,
+            sellers: ["BoxLunch", "LoungeFly", "Amazon", "Ebay", "Mercari", "Poshmark", "Shopify"],
+            brand: ["BoxLunch", "LoungeFly", "DanMartins"],
         }))
-    }),
+    })
 }
 </script>

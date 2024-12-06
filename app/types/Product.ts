@@ -6,4 +6,7 @@ export interface Product {
     description: string;
     productId: string;
     isOriginal: boolean;
+    brand: string;
+    timeCreated: string;
+    sellers: string[];
   }
