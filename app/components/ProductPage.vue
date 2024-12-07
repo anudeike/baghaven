@@ -115,7 +115,7 @@ export default {
             price: (Math.random() * 100).toFixed(2), // Random price between 0 and 100
             timeCreated: new Date().toISOString(),
             imageLink: `https://picsum.photos/500/300?image=${Math.floor(Math.random() * 1000)}`, // Random image number
-            description: `Description for Product Listing ${index + 1}`,
+            description: `External Link: Description for Product Listing ${index + 1}`,
             isOriginal: Math.random() < 0.5,
             seller: ["BoxLunch", "LoungeFly", "Amazon", "Ebay", "Mercari", "Poshmark", "Shopify"][Math.floor(Math.random() * 7)],
             brand: ["BoxLunch", "LoungeFly", "DanMartins"][Math.floor(Math.random() * 3)],
