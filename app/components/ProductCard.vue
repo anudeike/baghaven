@@ -13,14 +13,10 @@
                                         </div>
 
                                         <v-chip-group>
-                                            <v-chip v-if="product.isOriginal" prepend-icon="mdi-check-circle"
-                                                color="white">
-                                                original
-                                            </v-chip>
-
                                             <v-chip prepend-icon="mdi-currency-usd" color="white">
                                                 {{ product.price }} USD
                                             </v-chip>
+
                                         </v-chip-group>
                                     </v-card-title>
                                 </v-col>
@@ -32,6 +28,16 @@
 
             <div class="text-h6 ma-2">
                 {{ product.name }}
+            </div>
+
+            <div class="text-subtitle-1 ma-2">
+                {{ product.sellers.join(', ') }}
+            </div>
+
+            <div class="text-subtitle-1 ma-2">
+                <v-chip v-if="product.isOriginal" color="white">
+                    original
+                </v-chip>
             </div>
 
             <div class="text-p ma-2">
