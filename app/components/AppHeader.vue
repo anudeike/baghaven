@@ -30,21 +30,31 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            query: 'chroma rick and morty bag',
+            query: 'studio ghibli minibag',
             products: [], // Data fetched from the backend
         };
     },
     methods: {
         async fetchProducts() {
             try {
-                // Replace with your backend URL
-                const response = await axios.post('', {
-                    query: this.query,
-                    pages: 9
+                // // Replace with your backend URL
+                // console.log('Fetching products using query:', this.query, '...');
+                // const response = await axios.post('http://127.0.0.1:8000/search/', {
+                //     query: this.query,
+                //     pages: 9
+                // });
+
+                // console.log('Fetched products:', response.data);
+                // this.products = response.data; // Assign fetched data to the component's state
+
+                // navigate to the search page
+                this.$router.push({
+                    name: 'search',
+                    query: {
+                        q: this.query
+                    }
                 });
 
-                console.log('Fetched products:', response.data);
-                this.products = response.data; // Assign fetched data to the component's state
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
