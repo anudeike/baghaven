@@ -7,9 +7,10 @@
 
     <div>
         <h1>Top 100 Products</h1>
-        <ul v-if="products.length">
-            <li v-for="product in products" :key="product.id">
-                {{ product.name }} - ${{ product.price }}
+        <ul v-if="firebaseProducts.length">
+
+            <li v-for="fproduct in firebaseProducts" :key="fproduct.id">
+                {{ fproduct.baseName }} - ${{ fproduct.price }}
             </li>
         </ul>
         <p v-else>Loading...</p>
@@ -65,6 +66,8 @@ export default {
         const loadFirebaseProducts = async () => {
             firebaseProducts.value = await fetchTopProducts();
         };
+
+        console.log("firebaseProducts", firebaseProducts);
 
         onMounted(() => {
             loadFirebaseProducts();
