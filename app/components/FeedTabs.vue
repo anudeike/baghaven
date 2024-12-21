@@ -5,6 +5,16 @@
         <v-tab value="three">Feed</v-tab>
     </v-tabs>
 
+    <div>
+        <h1>Top 100 Products</h1>
+        <ul v-if="products.length">
+            <li v-for="product in products" :key="product.id">
+                {{ product.name }} - ${{ product.price }}
+            </li>
+        </ul>
+        <p v-else>Loading...</p>
+    </div>
+
     <v-card-text>
         <v-tabs-window v-model="tab">
             <v-tabs-window-item value="one">
@@ -28,18 +38,8 @@
 
 <script>
 import ProductCard from './ProductCard.vue';
-
-function getRandomItem(arr) {
-    const randomIndex = Math.floor(Math.random() * arr.length);
-    return arr[randomIndex];
-}
-
-function getRandomSlice(arr, length) {
-    const randomIndex = Math.floor(Math.random() * (arr.length - length + 1));
-
-    let endIndex = Math.min(randomIndex + length, arr.length);
-    return arr.slice(randomIndex, endIndex);
-}
+import { ref, onMounted } from 'vue';
+import { fetchTopProducts } from '../firebase/firebaseUtilityFunctions.js';
 
 export default {
     data: () => ({
@@ -58,6 +58,19 @@ export default {
             sellers: ["BoxLunch", "LoungeFly", "Amazon", "Ebay", "Mercari", "Poshmark", "Shopify"],
             brand: ["BoxLunch", "LoungeFly", "DanMartins"],
         }))
-    })
+    }),
+    setup() {
+        const firebaseProducts = ref([]);
+
+        const loadFirebaseProducts = async () => {
+            firebaseProducts.value = await fetchTopProducts();
+        };
+
+        onMounted(() => {
+            loadFirebaseProducts();
+        });
+
+        return { firebaseProducts };
+    }
 }
 </script>
