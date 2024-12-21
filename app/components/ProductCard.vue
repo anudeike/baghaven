@@ -30,10 +30,6 @@
                 {{ product.name }}
             </div>
 
-            <!-- <div class="text-subtitle-1 ma-2">
-                {{ product.sellers.join(', ') }}
-            </div> -->
-
             <div class="text-subtitle-1 ma-2">
                 <v-chip v-if="product.isOriginal" color="white">
                     original
