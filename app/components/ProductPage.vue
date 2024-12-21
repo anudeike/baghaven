@@ -3,7 +3,7 @@
         <v-row>
             <v-col>
                 <v-card>
-                    <v-img :src="product?.imageLink" cover>
+                    <v-img :src="product?.baseImage" cover>
 
                     </v-img>
                 </v-card>
@@ -23,7 +23,8 @@
                         <v-chip-group column>
                             <v-chip v-for="seller in product?.sellers" :key="seller" prepend-icon="mdi-tag"
                                 color="white">
-                                {{ seller }}</v-chip>
+                                {{ seller }}
+                            </v-chip>
                         </v-chip-group>
                     </v-card-subtitle>
 

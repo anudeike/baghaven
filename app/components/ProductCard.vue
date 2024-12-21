@@ -1,7 +1,7 @@
 <template>
     <v-hover v-slot="{ isHovering, props }" open-delay="50" close-delay="200">
         <v-card variant="flat" color="transparent" v-bind="props" elevation="0" @click="openProduct">
-            <v-img :src="product.imageLink" aspect-ratio="1.5" :class="{ 'on-hover': isHovering }" cover>
+            <v-img :src="product.baseImage" aspect-ratio="1.5" :class="{ 'on-hover': isHovering }" cover>
                 <v-overlay :model-value="!!isHovering" scrim="#001714" contained opacity="0.5" class="align-sr">
                     <v-row class="ma-2">
                         <v-col>
@@ -9,7 +9,7 @@
                                 <v-col>
                                     <v-card-title>
                                         <div>
-                                            {{ product.name }}
+                                            {{ product.baseName }}
                                         </div>
 
                                         <v-chip-group>

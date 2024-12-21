@@ -5,23 +5,12 @@
         <v-tab value="three">Feed</v-tab>
     </v-tabs>
 
-    <div>
-        <h1>Top 100 Products</h1>
-        <ul v-if="firebaseProducts.length">
-
-            <li v-for="fproduct in firebaseProducts" :key="fproduct.id">
-                {{ fproduct.baseName }} - ${{ fproduct.price }}
-            </li>
-        </ul>
-        <p v-else>Loading...</p>
-    </div>
-
     <v-card-text>
         <v-tabs-window v-model="tab">
             <v-tabs-window-item value="one">
                 <v-row justify="center">
-                    <v-col v-for="(product, index) in products" :key="index" cols="12" sm="6" lg="3">
-                        <ProductCard :product="product" />
+                    <v-col v-for="(fproduct, id) in firebaseProducts" :key="id" cols="12" sm="6" lg="3">
+                        <ProductCard :product="fproduct" />
                     </v-col>
                 </v-row>
             </v-tabs-window-item>
