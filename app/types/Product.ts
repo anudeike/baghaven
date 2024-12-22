@@ -1,8 +1,8 @@
 export interface Product {
     id: string;
-    name: string;
+    baseName: string;
     price: string;
-    imageLink: string;
+    baseImage: string;
     description: string;
     productId: string;
     isOriginal: boolean;

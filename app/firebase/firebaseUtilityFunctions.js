@@ -3,7 +3,7 @@ import { db, collection, query, orderBy, limit, getDocs, where } from "./../fire
 const fetchTopProducts = async () => {
   const productsRef = collection(db, "products");
   
-  const q = query(productsRef, where("groupId", "==", "15522639"), limit(100));
+  const q = query(productsRef, limit(100));
 
   const querySnapshot = await getDocs(q);
   const results = [];

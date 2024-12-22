@@ -13,7 +13,7 @@
                 <v-card flat color="transparent">
 
                     <v-card-title class="text-h4">
-                        {{ product?.name }}
+                        {{ product?.baseName }}
                     </v-card-title>
 
                     <v-card-subtitle>
@@ -60,7 +60,7 @@
                                         <v-card flat>
                                             <div class="d-flex flex-no-wrap">
                                                 <v-avatar class="ma-3" rounded="0" size="125">
-                                                    <v-img :src="product?.imageLink"></v-img>
+                                                    <v-img :src="product?.baseImage"></v-img>
                                                 </v-avatar>
 
                                                 <div>
