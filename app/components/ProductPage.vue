@@ -12,7 +12,7 @@
             <v-col cols="6">
                 <v-card flat color="transparent">
 
-                    <v-card-title class="text-h4">
+                    <v-card-title class="text-h5" style="word-break: normal;">
                         {{ product?.baseName }}
                     </v-card-title>
 
@@ -29,10 +29,32 @@
                     </v-card-subtitle>
 
                     <v-card-actions>
-                        <div class="text-h6 font-weight-light mb-n1">
-                            <!-- Show the average price of the product listings -->
-                            Average Price: ${{ averagePrice }}
-                        </div>
+                        <v-container fluid>
+                            <v-row>
+                                <v-col>
+                                    <div class="text-h6 font-weight-light mb-n1">
+                                        <!-- Show the average price of the product listings -->
+                                        Average Price: ${{ averagePrice }}
+                                    </div>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col>
+                                    <div class="text-h6 font-weight-light mb-n1">
+                                        <!-- Show the average price of the product listings -->
+                                        Availability: ${{ product?.availability }}
+                                    </div>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col>
+                                    <div class="text-h6 font-weight-light mb-n1">
+                                        <!-- Show the average price of the product listings -->
+                                        Size: {{ product?.size }}, Color: {{ product?.color }}
+                                    </div>
+                                </v-col>
+                            </v-row>
+                        </v-container>
                     </v-card-actions>
                 </v-card>
             </v-col>

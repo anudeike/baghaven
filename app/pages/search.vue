@@ -9,12 +9,17 @@
         </v-row>
 
         <!-- Success State -->
-        <v-row v-if="status === 'success'">
-
-            <!-- print out each product -->
-
+        <v-row v-if="status === 'success' && data">
             <v-col v-for="product in data" :key="product.productId" cols="6">
                 <ProductCard :product="product" />
+            </v-col>
+        </v-row>
+
+        <v-row v-else-if="status === 'success' && !data">
+            <v-col>
+                <v-alert type="warning" title="No results found!" variant="tonal" border="start">
+                    We couldn't find any products matching your search.
+                </v-alert>
             </v-col>
         </v-row>
 
@@ -34,6 +39,7 @@
         <p>Query: {{ route.query.q }}</p>
         <p>{{ data }}</p>
         <p>Status: {{ status }}</p>
+        <p>Error: {{ error }}</p>
 
         <!-- <v-btn @click="refresh">Refresh</v-btn> -->
 
