@@ -8,14 +8,26 @@
 
         </v-row>
 
+        <!-- Success State -->
+        <v-row v-if="status === 'success'">
+
+            <!-- print out each product -->
+
+            <v-col v-for="product in data" :key="product.productId" cols="6">
+                <ProductCard :product="product" />
+            </v-col>
+        </v-row>
+
         <!-- Error State -->
-        <v-row v-else-if="error">
+        <v-row v-else="error">
             <v-col>
                 <v-alert type="error" title="Uh oh! Something went wrong..." variant="tonal" border="start">
-                    {{ error.message }}
+                    We aren't able to load your products at this time!
                 </v-alert>
             </v-col>
         </v-row>
+
+
     </v-container>
     <div>
         <h1>Search Results</h1>
@@ -23,9 +35,7 @@
         <p>{{ data }}</p>
         <p>Status: {{ status }}</p>
 
-        <p v-if="error">An error occurred: {{ error.message }}</p>
-        <v-btn @click="refresh">Refresh</v-btn>
-        <v-btn @click="clear">Clear</v-btn>
+        <!-- <v-btn @click="refresh">Refresh</v-btn> -->
 
         <!-- <p>{{ productResults }}</p>
 
