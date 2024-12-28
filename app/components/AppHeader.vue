@@ -17,7 +17,7 @@
         </v-app-bar-title>
 
         <template v-slot:append>
-            <v-btn icon="mdi-image-search" @click="fetchProducts"></v-btn>
+            <v-btn icon="mdi-image-search" @click="navigateToSearch"></v-btn>
 
             <v-btn icon="mdi-dots-vertical"></v-btn>
         </template>
@@ -30,12 +30,12 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            query: 'studio ghibli minibag',
+            query: 'marvel t-shirt',
             products: [], // Data fetched from the backend
         };
     },
     methods: {
-        async fetchProducts() {
+        async navigateToSearch() {
             try {
                 // navigate to the search page
                 this.$router.push({

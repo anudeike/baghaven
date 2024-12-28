@@ -1,9 +1,18 @@
 <template>
+    <v-container fluid>
+        <v-row v-if="status === 'pending'">
+            <v-col v-for="n in 12" :key="n" cols="3">
+                <v-skeleton-loader class="mx-auto" max-width="300" type="card-avatar, actions"></v-skeleton-loader>
+            </v-col>
+
+        </v-row>
+    </v-container>
     <div>
         <h1>Search Results</h1>
         <p>Query: {{ route.query.q }}</p>
         <p>{{ data }}</p>
         <p>Status: {{ status }}</p>
+
         <p v-if="error">An error occurred: {{ error.message }}</p>
         <v-btn @click="refresh">Refresh</v-btn>
         <v-btn @click="clear">Clear</v-btn>
@@ -40,8 +49,13 @@ const { data, error, status, refresh } = useAsyncData(
     })
 )
 
+</script>
 
-
-
-
+<script>
+export default {
+    data: () => ({
+        errorSnackbar: false,
+        errorSnackbarText: 'Seems like something went wrong...',
+    })
+};
 </script>

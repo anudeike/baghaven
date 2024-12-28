@@ -8,6 +8,16 @@
     <v-card-text>
         <v-tabs-window v-model="tab">
             <v-tabs-window-item value="one">
+                <!-- TODO: vertical and horizontal center, add more styling -->
+                <v-row v-if="firebaseProducts.length === 0">
+                    <v-col justify="center">
+                        <v-card>
+                            <v-card-title>
+                                No products found!
+                            </v-card-title>
+                        </v-card>
+                    </v-col>
+                </v-row>
                 <v-row justify="center">
                     <v-col v-for="(fproduct, id) in firebaseProducts" :key="id" cols="12" sm="6" lg="3">
                         <ProductCard :product="fproduct" />
