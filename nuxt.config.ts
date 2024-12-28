@@ -25,6 +25,13 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    public: {
+      algoliaAppid: process.env.ALGOLIA_APP_ID,
+      algoliaApiKey: process.env.ALGOLIA_API_KEY
+    }
+  },
+
   css: [],
   modules: ['@nuxt/fonts', 'vuetify-nuxt-module', '@nuxt/eslint', '@pinia/nuxt'],
 

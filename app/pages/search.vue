@@ -19,18 +19,29 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
+
 const route = useRoute()
 
-const { data, status, error, refresh, clear } = await useAsyncData(
-    'products',
-    () => $fetch('http://127.0.0.1:8000/api/productSearch', {
+// get the query from the route
+const searchQuery = computed(() => route.query.q || '')
+
+// fetch the relevant products from the backend
+const { data, error, status, refresh } = useAsyncData(
+    'product_id',
+    () => $fetch('http://localhost:7071/api/text-search-item', {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: {
-            query: route.query.q || '',
-            pages: 9
+            query: searchQuery.value
         }
     })
 )
+
+
+
+
 
 </script>
