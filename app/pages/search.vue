@@ -1,10 +1,20 @@
 <template>
     <v-container fluid>
+        <!-- Loading State -->
         <v-row v-if="status === 'pending'">
             <v-col v-for="n in 12" :key="n" cols="3">
                 <v-skeleton-loader class="mx-auto" max-width="300" type="card-avatar, actions"></v-skeleton-loader>
             </v-col>
 
+        </v-row>
+
+        <!-- Error State -->
+        <v-row v-else-if="error">
+            <v-col>
+                <v-alert type="error" title="Uh oh! Something went wrong..." variant="tonal" border="start">
+                    {{ error.message }}
+                </v-alert>
+            </v-col>
         </v-row>
     </v-container>
     <div>
