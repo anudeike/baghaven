@@ -9,13 +9,13 @@
         </v-row>
 
         <!-- Success State -->
-        <v-row v-if="status === 'success' && data">
+        <v-row v-if="status === 'success' && data?.length && data.length > 0">
             <v-col v-for="product in data" :key="product.productId" cols="6">
                 <ProductCard :product="product" />
             </v-col>
         </v-row>
 
-        <v-row v-else-if="status === 'success' && !data">
+        <v-row v-else-if="status === 'success' && data">
             <v-col>
                 <v-alert type="warning" title="No results found!" variant="tonal" border="start">
                     We couldn't find any products matching your search.
@@ -34,24 +34,6 @@
 
 
     </v-container>
-    <div>
-        <h1>Search Results</h1>
-        <p>Query: {{ searchQuery }}</p>
-        <p>{{ data }}</p>
-        <p>Status: {{ status }}</p>
-        <p>Error: {{ error }}</p>
-
-        <!-- <v-btn @click="refresh">Refresh</v-btn> -->
-
-        <!-- <p>{{ productResults }}</p>
-
-        <v-row v-if="productResults">
-            <v-col v-for="product in productResults" :key="product" cols="6">
-                <ProductCard :product="product" />
-            </v-col>
-        </v-row> -->
-
-    </div>
 </template>
 
 <script setup lang="ts">
