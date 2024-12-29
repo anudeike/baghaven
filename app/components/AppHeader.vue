@@ -12,8 +12,8 @@
         </template>
 
         <v-app-bar-title>
-            <v-text-field label="try searching 'chroma rick and morty bag'" v-model="query" prepend-icon="mdi-magnify"
-                variant="underlined" class="mt-3"></v-text-field>
+            <v-text-field label="try searching 'marvel t-shirt'" v-model="query" prepend-icon="mdi-magnify"
+                variant="underlined" class="mt-3" @keyup.enter="navigateToSearch"></v-text-field>
         </v-app-bar-title>
 
         <template v-slot:append>
@@ -25,7 +25,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { ref } from 'vue';
+import { useSearchStore } from '@/stores/searchStore';
 
 export default {
     data() {
@@ -37,6 +38,14 @@ export default {
     methods: {
         async navigateToSearch() {
             try {
+                // save the query to the search store
+                const searchStore = useSearchStore();
+                searchStore.setQuery(this.query);
+
+                // print out the new query
+                console.log('[HEADER]New query:', this.query);
+
+
                 // navigate to the search page
                 this.$router.push({
                     name: 'search',
@@ -46,7 +55,7 @@ export default {
                 });
 
             } catch (error) {
-                console.error('Error fetching products:', error);
+                console.error('Error cannot fetch products:', error);
             }
         },
     },

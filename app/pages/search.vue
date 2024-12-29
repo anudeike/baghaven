@@ -36,7 +36,7 @@
     </v-container>
     <div>
         <h1>Search Results</h1>
-        <p>Query: {{ route.query.q }}</p>
+        <p>Query: {{ searchQuery }}</p>
         <p>{{ data }}</p>
         <p>Status: {{ status }}</p>
         <p>Error: {{ error }}</p>
@@ -54,34 +54,47 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+import { useSearchStore } from '@/stores/searchStore';
+import type { Product } from '~/types/Product';
 
-const route = useRoute()
+// get the query from the search store
+const searchStore = useSearchStore();
+const searchQuery = ref(searchStore.query)
 
-// get the query from the route
-const searchQuery = computed(() => route.query.q || '')
+console.log("[SEARCH-COMPONENT] searchQuery", searchQuery.value);
 
-// fetch the relevant products from the backend
-const { data, error, status, refresh } = useAsyncData(
-    'product_id',
-    () => $fetch('http://localhost:7071/api/text-search-item', {
+// function to fetch data
+const fetchProducts = async (query: string): Promise<Product[]> => {
+    return await $fetch('http://localhost:7071/api/text-search-item', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: {
-            query: searchQuery.value
-        }
-    })
+        body: { query },
+    });
+};
+
+// fetch the relevant products from the backend
+const { data, error, status, refresh } = useAsyncData<Product[]>(
+    'product_id',
+    () => fetchProducts(searchQuery.value)
 )
 
-</script>
+// subscribe to changes in the search query
+searchStore.$subscribe((mutation, state) => {
+    searchQuery.value = state.query
+})
 
-<script>
-export default {
-    data: () => ({
-        errorSnackbar: false,
-        errorSnackbarText: 'Seems like something went wrong...',
-    })
-};
+// watch for changes in the query from the store
+watch(searchQuery, async (newQuery, oldQuery) => {
+    if (newQuery !== oldQuery) {
+
+        console.log("newQuery", newQuery);
+        console.log("oldQuery", oldQuery);
+        await refresh();
+    }
+});
+
 </script>
